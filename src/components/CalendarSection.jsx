@@ -31,9 +31,30 @@ function CalendarSection({ entries, moodHistory }) {
   const getDayData = (date) => {
     if (!date) return null
 
-    const dateStr = date.toISOString().split('T')[0]
-    const entry = entries.find(e => e.date.startsWith(dateStr))
-    const mood = moodHistory.find(m => m.date.startsWith(dateStr))
+    // Compare local dates by formatting both to local date strings
+    const dateStr = date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
+
+    const entry = entries.find(e => {
+      const entryDate = new Date(e.date)
+      return entryDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }) === dateStr
+    })
+
+    const mood = moodHistory.find(m => {
+      const moodDate = new Date(m.date)
+      return moodDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }) === dateStr
+    })
 
     return { entry, mood }
   }
@@ -90,7 +111,7 @@ function CalendarSection({ entries, moodHistory }) {
         {/* Day Headers */}
         <div className="grid grid-cols-7 gap-2 mb-2">
           {days.map((day) => (
-            <div key={day} className="text-center text-sm font-medium text-gray-400 dark:text-gray-400 py-2">
+            <div key={day} className="text-center text-sm font-medium text-gray-400 dark:text-gray-200 py-2">
               {day}
             </div>
           ))}
@@ -146,14 +167,14 @@ function CalendarSection({ entries, moodHistory }) {
 
           {selectedDayData.mood && (
             <div className="mb-4">
-              <p className="text-gray-500 dark:text-gray-400 mb-2">Mood:</p>
+              <p className="text-gray-500 dark:text-gray-200 mb-2">Mood:</p>
               <span className="text-4xl">{getMoodEmoji(selectedDayData.mood.mood)}</span>
             </div>
           )}
 
           {selectedDayData.entry ? (
             <div>
-              <p className="text-gray-500 dark:text-gray-400 mb-2">Journal Entry:</p>
+              <p className="text-gray-500 dark:text-gray-200 mb-2">Journal Entry:</p>
               <p className="text-gray-600 dark:text-gray-300 whitespace-pre-wrap bg-sage-50/70 dark:bg-gray-700/40 p-4 rounded-xl">
                 {selectedDayData.entry.text}
               </p>

@@ -22,9 +22,9 @@ const MOODS = [
 // Tags for entries
 const TAGS = [
   { id: 'grateful', label: '🌟 Grateful' },
-  { id: 'stressful', label: '💪 Stressful' },
+  { id: 'stressful', label: '🤔 Stressful' },
   { id: 'productive', label: '✨ Productive' },
-  { id: 'reflective', label: '🤔 Reflective' },
+  { id: 'reflective', label: '💪 Reflective' },
   { id: 'peaceful', label: '☮️ Peaceful' },
   { id: 'challenging', label: '🔥 Challenging' },
 ]
@@ -69,9 +69,18 @@ function App() {
   const toggleDarkMode = () => setDarkMode(!darkMode)
 
   const handleSaveEntry = (entry) => {
+    const now = new Date()
     const newEntry = {
       id: Date.now(),
-      date: new Date().toISOString(),
+      date: now.toISOString(),
+      localDate: now.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      }),
       ...entry
     }
     setEntries([newEntry, ...entries])
@@ -80,16 +89,33 @@ function App() {
     if (entry.mood) {
       const moodEntry = {
         mood: entry.mood,
-        date: new Date().toISOString()
+        date: now.toISOString(),
+        localDate: now.toLocaleDateString('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        })
       }
       setMoodHistory([moodEntry, ...moodHistory])
     }
   }
 
   const handleSaveMood = (mood) => {
+    const now = new Date()
     const moodEntry = {
       mood,
-      date: new Date().toISOString()
+      date: now.toISOString(),
+      localDate: now.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      })
     }
     setMoodHistory([moodEntry, ...moodHistory])
   }
@@ -101,8 +127,8 @@ function App() {
   return (
     <div className={`min-h-screen transition-all duration-500 ${
       darkMode
-        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900'
-        : 'bg-gradient-to-br from-sage-50 via-white to-softblue-50'
+        ? 'bg-linear-to-br from-gray-900 via-gray-800 to-gray-900'
+        : 'bg-linear-to-br from-sage-50 via-white to-softblue-50'
     }`}>
       <div className="max-w-7xl mx-auto px-4 py-6 lg:py-8">
         {/* Header */}

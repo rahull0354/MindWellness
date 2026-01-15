@@ -17,9 +17,23 @@ function MoodSection({ moods, moodHistory, onSaveMood }) {
     for (let i = 6; i >= 0; i--) {
       const date = new Date(today)
       date.setDate(date.getDate() - i)
-      const dateStr = date.toISOString().split('T')[0]
 
-      const dayMood = moodHistory.find(m => m.date.startsWith(dateStr))
+      // Compare local dates by formatting both to local date strings
+      const dateStr = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      })
+
+      const dayMood = moodHistory.find(m => {
+        const moodDate = new Date(m.date)
+        return moodDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        }) === dateStr
+      })
+
       weekData.push({
         day: days[date.getDay()],
         mood: dayMood?.mood || null

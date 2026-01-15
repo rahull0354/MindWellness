@@ -39,9 +39,23 @@ function TrendsSection({ moodHistory, entries, moods }) {
     for (let i = 29; i >= 0; i--) {
       const date = new Date(today)
       date.setDate(date.getDate() - i)
-      const dateStr = date.toISOString().split('T')[0]
 
-      const dayMood = moodHistory.find(m => m.date.startsWith(dateStr))
+      // Compare local dates by formatting both to local date strings
+      const dateStr = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      })
+
+      const dayMood = moodHistory.find(m => {
+        const moodDate = new Date(m.date)
+        return moodDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        }) === dateStr
+      })
+
       days.push({
         date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
         score: dayMood ? moodScores[dayMood.mood] || 3 : null

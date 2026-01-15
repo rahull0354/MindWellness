@@ -130,7 +130,7 @@ function JournalSection({ entries, moods, tags, onSaveEntry, onDeleteEntry }) {
               >
                 <div className="flex justify-between items-start mb-2">
                   <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                    {formatDate(entry.date)}
+                    {entry.localDate || formatDate(entry.date)}
                   </span>
                   <div className="flex items-center gap-2">
                     {entry.mood && (
