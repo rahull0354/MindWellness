@@ -71,36 +71,65 @@ function QuoteCard() {
   }, []);
 
   return (
-    <div className="bg-linear-to-br from-white to-sage-50/50 dark:from-gray-800/50 dark:to-lavender-950/30 backdrop-blur-sm rounded-2xl shadow-sm p-6 lg:p-8 hover:shadow-md transition-all duration-500 border border-sage-100 dark:border-sage-800/30">
-      {/* Floating Icon */}
-      <div className="text-center text-4xl mb-4 opacity-80">✨</div>
+    <div className="relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 group">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 dark:from-violet-600 dark:via-purple-700 dark:to-fuchsia-600 transition-all duration-500 group-hover:scale-105"></div>
 
-      {/* Quote Text */}
-      {isLoading ? (
-        <p className="text-gray-500 dark:text-gray-300 text-center text-lg leading-relaxed min-h-20 flex items-center justify-center">
-          Loading inspiration...
-        </p>
-      ) : (
-        <p className="text-gray-600 dark:text-gray-200 text-center text-lg leading-relaxed min-h-20 italic">
-          "{quote.text}"
-        </p>
-      )}
+      {/* Glassmorphism overlay */}
+      <div className="absolute inset-0 bg-white/10 dark:bg-black/10 backdrop-blur-md"></div>
 
-      {/* Author */}
-      {quote.author && !isLoading && (
-        <p className="text-gray-400 dark:text-gray-400 text-center text-sm mt-4">
-          — {quote.author}
-        </p>
-      )}
+      {/* Decorative circles */}
+      <div className="absolute -top-12 -right-12 w-32 h-32 bg-pink-400/30 rounded-full blur-2xl"></div>
+      <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-blue-400/30 rounded-full blur-2xl"></div>
 
-      {/* Refresh Button */}
-      <button
-        onClick={fetchQuote}
-        disabled={isLoading}
-        className="w-full mt-6 bg-linear-to-r from-sage-400 via-sage-500 to-softblue-400 dark:from-sage-600 dark:via-lavender-600 dark:to-sage-600 hover:from-sage-500 hover:via-sage-600 hover:to-softblue-500 dark:hover:from-sage-700 dark:hover:via-lavender-700 dark:hover:to-sage-700 disabled:opacity-50 text-white font-medium py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-sm active:scale-[0.98]"
-      >
-        🔄 New Quote
-      </button>
+      {/* Content */}
+      <div className="relative p-6 lg:p-8">
+        {/* Floating Icon with glow effect */}
+        <div className="flex justify-center mb-5">
+          <div className="relative">
+            <div className="absolute inset-0 bg-yellow-300/50 rounded-full blur-xl animate-pulse"></div>
+            <div className="relative text-5xl">✨</div>
+          </div>
+        </div>
+
+        {/* Quote Text */}
+        {isLoading ? (
+          <div className="min-h-28 flex items-center justify-center">
+            <p className="text-white/90 text-center text-lg leading-relaxed font-light">
+              Loading inspiration...
+            </p>
+          </div>
+        ) : (
+          <div className="min-h-28 flex items-center justify-center">
+            <p className="text-white text-center text-lg leading-relaxed font-light">
+              "{quote.text}"
+            </p>
+          </div>
+        )}
+
+        {/* Author */}
+        {quote.author && !isLoading && (
+          <div className="mt-6 flex items-center justify-center gap-2">
+            <div className="h-px w-8 bg-gradient-to-r from-transparent to-white/50"></div>
+            <p className="text-white/80 text-center text-sm font-medium tracking-wide">
+              {quote.author}
+            </p>
+            <div className="h-px w-8 bg-gradient-to-l from-transparent to-white/50"></div>
+          </div>
+        )}
+
+        {/* Refresh Button */}
+        <button
+          onClick={fetchQuote}
+          disabled={isLoading}
+          className="w-full mt-6 bg-white/20 hover:bg-white/30 dark:bg-white/10 dark:hover:bg-white/20 backdrop-blur-sm border-2 border-white/30 hover:border-white/50 disabled:opacity-50 text-white font-medium py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
+        >
+          <span className="flex items-center justify-center gap-2">
+            <span>🔄</span>
+            <span>New Quote</span>
+          </span>
+        </button>
+      </div>
     </div>
   );
 }

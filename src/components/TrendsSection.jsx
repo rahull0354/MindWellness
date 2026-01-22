@@ -168,8 +168,8 @@ function TrendsSection({ moodHistory, entries, moods }) {
       {
         label: "Mood Score",
         data: moodTrendData.map((d) => d.score),
-        borderColor: "rgb(116, 158, 129)",
-        backgroundColor: "rgba(116, 158, 129, 0.15)",
+        borderColor: "rgb(192, 132, 252)",
+        backgroundColor: "rgba(192, 132, 252, 0.15)",
         fill: true,
         tension: 0.4,
       },
@@ -211,14 +211,14 @@ function TrendsSection({ moodHistory, entries, moods }) {
       {
         data: moodDistributionData.data,
         backgroundColor: [
-          "rgba(116, 158, 129, 0.8)",
-          "rgba(135, 130, 203, 0.8)",
-          "rgba(143, 201, 187, 0.8)",
-          "rgba(165, 185, 196, 0.8)",
-          "rgba(224, 195, 164, 0.8)",
-          "rgba(217, 170, 177, 0.8)",
-          "rgba(157, 130, 203, 0.8)",
-          "rgba(135, 189, 186, 0.8)",
+          "rgba(167, 139, 250, 0.8)",
+          "rgba(192, 132, 252, 0.8)",
+          "rgba(217, 70, 239, 0.8)",
+          "rgba(232, 121, 249, 0.8)",
+          "rgba(139, 92, 246, 0.8)",
+          "rgba(168, 85, 247, 0.8)",
+          "rgba(217, 70, 239, 0.8)",
+          "rgba(192, 132, 252, 0.8)",
         ],
         borderWidth: 0,
       },
@@ -242,19 +242,19 @@ function TrendsSection({ moodHistory, entries, moods }) {
   return (
     <div className="space-y-6">
       {/* Mood Trends Chart */}
-      <div className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-sm p-6 hover:shadow-md transition-all duration-300 border border-sage-100 dark:border-sage-800/30">
+      <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 hover:shadow-md transition-all duration-300 border border-violet-200 dark:border-purple-500/50">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-gray-600 dark:text-gray-100">
+          <h2 className="text-xl font-semibold text-gray-700 dark:text-white">
             Mood Trends
           </h2>
           {/* View Toggle Buttons */}
-          <div className="flex gap-2 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+          <div className="flex gap-2 bg-violet-100 dark:bg-purple-900/40 rounded-lg p-1">
             <button
               onClick={() => setViewMode('week')}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
                 viewMode === 'week'
-                  ? 'bg-white dark:bg-gray-600 text-gray-800 dark:text-gray-100 shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
+                  ? 'bg-white dark:bg-white/20 text-gray-800 dark:text-white shadow-sm'
+                  : 'text-gray-600 dark:text-purple-200 hover:text-gray-800 dark:hover:text-white'
               }`}
             >
               Week (7 days)
@@ -263,8 +263,8 @@ function TrendsSection({ moodHistory, entries, moods }) {
               onClick={() => setViewMode('month')}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
                 viewMode === 'month'
-                  ? 'bg-white dark:bg-gray-600 text-gray-800 dark:text-gray-100 shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
+                  ? 'bg-white dark:bg-white/20 text-gray-800 dark:text-white shadow-sm'
+                  : 'text-gray-600 dark:text-purple-200 hover:text-gray-800 dark:hover:text-white'
               }`}
             >
               Month (30 days)
@@ -275,7 +275,7 @@ function TrendsSection({ moodHistory, entries, moods }) {
           {moodHistory.length > 0 ? (
             <Line data={trendChartData} options={trendChartOptions} />
           ) : (
-            <div className="h-full flex items-center justify-center text-gray-400 dark:text-gray-400">
+            <div className="h-full flex items-center justify-center text-gray-400 dark:text-purple-300">
               <p className="text-center">Log some moods to see your trends!</p>
             </div>
           )}
@@ -283,8 +283,8 @@ function TrendsSection({ moodHistory, entries, moods }) {
       </div>
 
       {/* Mood Distribution */}
-      <div className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-sm p-6 hover:shadow-md transition-all duration-300 border border-sage-100 dark:border-sage-800/30">
-        <h2 className="text-xl font-semibold text-gray-600 dark:text-gray-100 mb-4">
+      <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 hover:shadow-md transition-all duration-300 border border-violet-200 dark:border-purple-500/50">
+        <h2 className="text-xl font-semibold text-gray-700 dark:text-white mb-4">
           Mood Distribution
         </h2>
         <div className="h-75">
@@ -294,7 +294,7 @@ function TrendsSection({ moodHistory, entries, moods }) {
               options={distributionChartOptions}
             />
           ) : (
-            <div className="h-full flex items-center justify-center text-gray-400 dark:text-gray-400">
+            <div className="h-full flex items-center justify-center text-gray-400 dark:text-purple-300">
               <p className="text-center">Log some moods to see distribution!</p>
             </div>
           )}
@@ -302,8 +302,8 @@ function TrendsSection({ moodHistory, entries, moods }) {
       </div>
 
       {/* Insights */}
-      <div className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-sm p-6 hover:shadow-md transition-all duration-300 border border-sage-100 dark:border-sage-800/30">
-        <h2 className="text-xl font-semibold text-gray-600 dark:text-gray-100 mb-4">
+      <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 hover:shadow-md transition-all duration-300 border border-violet-200 dark:border-purple-500/50">
+        <h2 className="text-xl font-semibold text-gray-700 dark:text-white mb-4">
           Insights
         </h2>
         <div className="space-y-3">
@@ -311,16 +311,16 @@ function TrendsSection({ moodHistory, entries, moods }) {
             insights.map((insight, index) => (
               <div
                 key={index}
-                className="bg-sage-50/70 dark:bg-gray-700/40 p-4 rounded-xl border-l-4 border-sage-400"
+                className="bg-fuchsia-100 dark:bg-purple-900/40 p-4 rounded-xl border-l-4 border-fuchsia-400"
               >
                 <span className="text-2xl mr-2">{insight.icon}</span>
-                <span className="text-gray-600 dark:text-gray-300">
+                <span className="text-gray-700 dark:text-purple-100">
                   {insight.text}
                 </span>
               </div>
             ))
           ) : (
-            <p className="text-gray-400 dark:text-gray-400 text-center py-4">
+            <p className="text-gray-400 dark:text-purple-300 text-center py-4">
               Your mood insights will appear here as you log more entries.
             </p>
           )}

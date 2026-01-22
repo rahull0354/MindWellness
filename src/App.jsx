@@ -152,8 +152,8 @@ function App() {
   return (
     <div className={`min-h-screen transition-all duration-500 ${
       darkMode
-        ? 'bg-linear-to-br from-gray-900 via-gray-800 to-gray-900'
-        : 'bg-linear-to-br from-sage-50 via-white to-softblue-50'
+        ? 'bg-gradient-to-br from-violet-950 via-purple-950 to-fuchsia-950'
+        : 'bg-gradient-to-br from-violet-50 via-purple-50 to-fuchsia-50'
     }`}>
       <div className="max-w-7xl mx-auto px-4 py-6 lg:py-8">
         {/* Header */}

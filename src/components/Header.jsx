@@ -1,6 +1,6 @@
 function Header({ darkMode, onToggleDarkMode }) {
   return (
-    <header className="bg-linear-to-r from-sage-400 via-sage-500 to-softblue-400 dark:from-sage-700 dark:via-lavender-700 dark:to-sage-700 rounded-2xl shadow-sm p-6 lg:p-8 transition-all duration-500">
+    <header className="bg-linear-to-r from-violet-500 via-purple-500 to-fuchsia-500 dark:from-violet-600 dark:via-purple-700 dark:to-fuchsia-600 rounded-2xl shadow-sm p-6 lg:p-8 transition-all duration-500">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl lg:text-3xl font-semibold text-white drop-shadow-sm">
           Mental Wellness Journal
