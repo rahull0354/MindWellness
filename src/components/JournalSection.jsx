@@ -88,7 +88,7 @@ function JournalSection({ entries, moods, tags, onSaveEntry, onDeleteEntry }) {
                 onClick={() => handleTagToggle(tag.id)}
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 text-sm ${
                   selectedTags.includes(tag.id)
-                    ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500 dark:from-violet-600 dark:to-fuchsia-600 text-white shadow-sm'
+                    ? 'bg-linear-to-r from-violet-500 to-fuchsia-500 dark:from-violet-600 dark:to-fuchsia-600 text-white shadow-sm'
                     : 'bg-violet-100 dark:bg-purple-900/40 text-gray-600 dark:text-purple-200 hover:bg-purple-100 dark:hover:bg-purple-900/60'
                 }`}
               >
@@ -108,7 +108,7 @@ function JournalSection({ entries, moods, tags, onSaveEntry, onDeleteEntry }) {
 
         <button
           onClick={handleSave}
-          className="w-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500 dark:from-violet-600 dark:via-purple-700 dark:to-fuchsia-600 hover:from-violet-600 hover:via-purple-600 hover:to-fuchsia-600 dark:hover:from-violet-700 dark:hover:via-purple-800 dark:hover:to-fuchsia-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-md active:scale-[0.98]"
+          className="w-full bg-linear-to-r from-violet-500 via-purple-500 to-fuchsia-500 dark:from-violet-600 dark:via-purple-700 dark:to-fuchsia-600 hover:from-violet-600 hover:via-purple-600 hover:to-fuchsia-600 dark:hover:from-violet-700 dark:hover:via-purple-800 dark:hover:to-fuchsia-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-md active:scale-[0.98]"
         >
           Save Entry
         </button>

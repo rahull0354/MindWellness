@@ -12,9 +12,9 @@ function Navigation({ activeTab, onTabChange }) {
         <button
           key={tab.id}
           onClick={() => onTabChange(tab.id)}
-          className={`flex-1 min-w-[100px] px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
+          className={`flex-1 min-w-25 px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
             activeTab === tab.id
-              ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500 dark:from-violet-600 dark:to-fuchsia-600 text-white shadow-sm'
+              ? 'bg-linear-to-r from-violet-500 to-fuchsia-500 dark:from-violet-600 dark:to-fuchsia-600 text-white shadow-sm'
               : 'text-gray-500 dark:text-purple-200 hover:bg-violet-100 dark:hover:bg-purple-900/40'
           }`}
         >

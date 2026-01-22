@@ -71,65 +71,41 @@ function QuoteCard() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 group">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 dark:from-violet-600 dark:via-purple-700 dark:to-fuchsia-600 transition-all duration-500 group-hover:scale-105"></div>
-
-      {/* Glassmorphism overlay */}
-      <div className="absolute inset-0 bg-white/10 dark:bg-black/10 backdrop-blur-md"></div>
-
-      {/* Decorative circles */}
-      <div className="absolute -top-12 -right-12 w-32 h-32 bg-pink-400/30 rounded-full blur-2xl"></div>
-      <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-blue-400/30 rounded-full blur-2xl"></div>
-
-      {/* Content */}
-      <div className="relative p-6 lg:p-8">
-        {/* Floating Icon with glow effect */}
-        <div className="flex justify-center mb-5">
-          <div className="relative">
-            <div className="absolute inset-0 bg-yellow-300/50 rounded-full blur-xl animate-pulse"></div>
-            <div className="relative text-5xl">✨</div>
-          </div>
+    <div className="bg-white dark:bg-violet-950/80 backdrop-blur-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-violet-200 dark:border-purple-500/50 max-w-sm">
+      {/* Quote with icon */}
+      <div className="flex items-start gap-2">
+        <span className="text-lg shrink-0 mt-0.5">✨</span>
+        <div className="flex-1 min-w-0">
+          {isLoading ? (
+            <p className="text-gray-700 dark:text-purple-100 text-sm leading-relaxed">
+              Loading...
+            </p>
+          ) : (
+            <>
+              <p className="text-gray-700 dark:text-purple-100 text-sm leading-relaxed line-clamp-2">
+                "{quote.text}"
+              </p>
+              {quote.author && (
+                <p className="text-gray-500 dark:text-purple-300 text-xs mt-1">
+                  — {quote.author}
+                </p>
+              )}
+            </>
+          )}
         </div>
-
-        {/* Quote Text */}
-        {isLoading ? (
-          <div className="min-h-28 flex items-center justify-center">
-            <p className="text-white/90 text-center text-lg leading-relaxed font-light">
-              Loading inspiration...
-            </p>
-          </div>
-        ) : (
-          <div className="min-h-28 flex items-center justify-center">
-            <p className="text-white text-center text-lg leading-relaxed font-light">
-              "{quote.text}"
-            </p>
-          </div>
-        )}
-
-        {/* Author */}
-        {quote.author && !isLoading && (
-          <div className="mt-6 flex items-center justify-center gap-2">
-            <div className="h-px w-8 bg-gradient-to-r from-transparent to-white/50"></div>
-            <p className="text-white/80 text-center text-sm font-medium tracking-wide">
-              {quote.author}
-            </p>
-            <div className="h-px w-8 bg-gradient-to-l from-transparent to-white/50"></div>
-          </div>
-        )}
-
-        {/* Refresh Button */}
-        <button
-          onClick={fetchQuote}
-          disabled={isLoading}
-          className="w-full mt-6 bg-white/20 hover:bg-white/30 dark:bg-white/10 dark:hover:bg-white/20 backdrop-blur-sm border-2 border-white/30 hover:border-white/50 disabled:opacity-50 text-white font-medium py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
-        >
-          <span className="flex items-center justify-center gap-2">
-            <span>🔄</span>
-            <span>New Quote</span>
-          </span>
-        </button>
       </div>
+
+      {/* Refresh button */}
+      <button
+        onClick={fetchQuote}
+        disabled={isLoading}
+        className="mt-3 w-full bg-linear-to-r from-violet-500 to-fuchsia-500 dark:from-violet-600 dark:to-fuchsia-600 hover:from-violet-600 hover:to-fuchsia-600 dark:hover:from-violet-700 dark:hover:to-fuchsia-700 disabled:opacity-50 text-white font-medium py-2 px-3 rounded-lg transition-all duration-300 text-sm hover:shadow-md active:scale-[0.98]"
+      >
+        <span className="flex items-center justify-center gap-2">
+          <span>🔄</span>
+          <span>New Quote</span>
+        </span>
+      </button>
     </div>
   );
 }
